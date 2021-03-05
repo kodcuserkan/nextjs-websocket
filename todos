@@ -1,0 +1,22 @@
+Login Sayfası Detayları;
+
+	2 input eklenecek (username,password)
+	1 giriş yap butonu
+	
+	Giriş yap butonuna basıldığında login olacak. 
+	Fake şekilde cookie ve sessiona yazacağız. 
+	Kullanıcıyı login olmuş sayacağız.
+	Daha sonra Soket bağlandısı yapılıp hep aktif alacaktır.
+	Bağlanılacak soket adresi (wss://echo.websocket.org)
+
+	const ck = 'test'
+	Cookies.set('ck', ck);
+	Cookies.set(ck, 'ck-test');
+	window.sessionStorage.setItem('manager','test-data');
+
+
+Dashboard Sayfası Detayları;
+	Login olunmuşsa bu sayfaya erişecek
+	Bağlı olunan sokete mesaj gönderilecek
+
+İş tam olarak bu kadar Nextjs ile yapılması gerekiyor
