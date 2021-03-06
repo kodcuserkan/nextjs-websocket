@@ -1,6 +1,17 @@
 import Layout from "../../components/Layout";
+import { useCookies } from "react-cookie";
 
 function Index() {
+  const [name, seName, removeName] = useCookies(['name']);
+  const [ck, seCk, removeCk] = useCookies(['ck']);
+  const [test, setTest, removeTest] = useCookies(['test']);
+  const handleClick = () => {
+    console.log("btn");
+    removeCk()
+    removeName()
+    removeTest()
+  }
+  
   return (
     <Layout>
       <h1 className="title">Anasayfa</h1>
@@ -12,6 +23,12 @@ function Index() {
         harum. Iusto commodi tenetur quasi tempora debitis ipsam vel maxime
         autem, aliquam rem. Dolorum facere ea reprehenderit, rem laboriosam ad?
       </p>
+      <button
+          className="mg-medium button is-danger"
+          onClick={handleClick}
+        >
+          Cookie temizlemek için tıkla
+        </button>
     </Layout>
   );
 }

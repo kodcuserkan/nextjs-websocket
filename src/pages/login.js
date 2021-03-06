@@ -38,12 +38,16 @@ const Login = () => {
       >
         <div className="field">
           <p className="control has-icons-left has-icons-right">
-            <input
-              className="input"
-              id="username"
-              placeholder="Kullanıcı adınız"
-              onChange={(e) => setName(e.target.value)}
-            />
+            <div class="field">
+              <div class="control">
+                <input
+                  class="input is-primary"
+                  type="text"
+                  placeholder="Kullanıcı adınız"
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+            </div>
             <span className="icon is-small is-left">
               <i className="fas fa-envelope"></i>
             </span>
@@ -54,13 +58,17 @@ const Login = () => {
         </div>
         <div className="field">
           <p className="control has-icons-left">
-            <input
-              className="input"
-              id="password"
-              type="password"
-              placeholder="Şifreniz"
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <div class="field">
+              <div class="control">
+                <input
+                  class="input is-primary"
+                  id="password"
+                  type="password"
+                  placeholder="Şifreniz"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+            </div>
             <span className="icon is-small is-left">
               <i className="fas fa-lock"></i>
             </span>
@@ -68,7 +76,7 @@ const Login = () => {
         </div>
         <div className="field">
           <p className="control">
-            <button className="button is-success">Login</button>
+            <button className="button is-primary">Login</button>
           </p>
         </div>
       </form>

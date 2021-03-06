@@ -6,16 +6,16 @@ import React, {
   useRef,
 } from "react";
 import { useCookies } from "react-cookie";
-import Layout from "../../components/Layout";
 import { useRouter } from "next/router";
 import useWebSocket, { ReadyState } from "react-use-websocket";
+import Layout from "../../components/layout";
 
 const Dashboard = () => {
   const router = useRouter();
   const [user] = useCookies("ck");
   const [socketUrl] = useState("wss://echo.websocket.org");
   const messageHistory = useRef([]);
-  const [msg, setMsg] = useState("")
+  const [msg, setMsg] = useState("");
 
   useEffect(() => {
     if (!user.ck) router.push("/login");
@@ -23,9 +23,9 @@ const Dashboard = () => {
 
   if (!user.ck) {
     return (
-      <Layout>
+      <div>
         <h1>Yükleniyor...</h1>
-      </Layout>
+      </div>
     );
   }
 
@@ -42,9 +42,9 @@ const Dashboard = () => {
   // );
 
   const handleClickSendMessage = useCallback(() => sendMessage("Merhaba"), []);
-  const handleClickSendFormMessage = e => {
+  const handleClickSendFormMessage = (e) => {
     e.preventDefault();
-    sendMessage(msg)
+    sendMessage(msg);
   };
 
   const connectionStatus = {
@@ -61,24 +61,34 @@ const Dashboard = () => {
       <div>
         <h3>HAZIR MESAJ:</h3>
         <button
+          className="button is-primary"
           onClick={handleClickSendMessage}
           disabled={readyState !== ReadyState.OPEN}
         >
           'Merhaba' demek için tıkla!
         </button>
-        <br/>
-        <br/>
+        <br />
+        <br />
         <h3>KENDİN YAZ:</h3>
         <form onSubmit={handleClickSendFormMessage}>
-          <input type="text" onChange={e => setMsg(e.target.value)}/>
-          <button>Gönder</button>
+          <div class="field">
+            <div class="control">
+              <input
+                class="input is-primary"
+                type="text"
+                placeholder="Kullanıcı adı"
+                onChange={(e) => setMsg(e.target.value)}
+              />
+            </div>
+          </div>
+          <button className="button is-primary">Gönder</button>
         </form>
         <span>Websoket durumu: {connectionStatus}</span>
-        <br/>
+        <br />
         {lastMessage ? <span>Last message: {lastMessage.data}</span> : null}
 
-        <br/>
-        <br/>
+        <br />
+        <br />
         <ul>
           {messageHistory.current.map((message, idx) => (
             <div key={idx}> Soketten gelen mesaj: {message?.data}</div>
